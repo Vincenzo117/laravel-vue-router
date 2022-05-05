@@ -25,6 +25,16 @@
                 </select>
             </div>
 
+            <div class="mb-3">Tags</div>
+            <div class="d-flex">
+                @foreach($tags as $tag)
+                    <div class="form-group pr-3">
+                        <input type="checkbox"  class="from-check-input" value="{{ $tag->id }}" name="tags[]">
+                        <label for="tags-[{{ $tag->id }}]">{{ $tag->name }}</label>
+                    </div>
+                @endforeach
+            </div>
+
             <div class="form-group">
                 <label for="content">Content</label> 
                 <textarea class="form-control @error('content') is-invalid @enderror" name="content" id="content" placeholder="Content">{{old('content') ?: ''}}</textarea>

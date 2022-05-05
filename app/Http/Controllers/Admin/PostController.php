@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Post;
+use App\Tag;
 
 class PostController extends Controller
 {
@@ -83,7 +84,9 @@ class PostController extends Controller
     {
         $categories = Category::all();
 
-        return view('admin.posts.edit', compact('post', 'categories'));
+        $tags = Tag::all();
+
+        return view('admin.posts.edit', compact('post', 'categories', 'tags'));
     }
 
     /**
@@ -99,18 +102,26 @@ class PostController extends Controller
             'title' => 'required|string|max:200',
             'content' => 'required|string',
             'published_at' => 'nullable|date|before_or_equal:today',
-            'category_id' => 'nullable|exists:categories,id'
+            'category_id' => 'nullable|exists:categories,id',
+            'tags-[]' => 'exists:tags,id'
         ]);
 
         $data = $request->all();
 
         $slug = Post::getUniqueSlug( $data['title'] );
 
-        $post = new Post();
-        $post->fill($data);
-        $post->slug = $slug;
+        if( $post->title != $data['title'] ) {
+            $slug = Post::getUniqueSlug($data['title']);
+            $data['slug'] = $slug;
+        }
+        
+        if( array_key_exists('tags', $data)) {
+            $post->tags()->sync($data['tags']);
+        } else {
+            $post->tags()->detach();
+        }
 
-        $post->save();
+        $post->update($data);
 
         return redirect()->route('admin.posts.index');
     }

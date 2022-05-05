@@ -13,6 +13,7 @@
                 <th scope="col">Title</th>
                 <th scope="col">Slug</th>
                 <th scope="col">Category</th>
+                <th scope="col">Tags</th>
                 <th scope="col">Published at</th>
                 <th scope="col">Created at</th>
                 <th scope="col"></th>
@@ -26,6 +27,11 @@
                 <td>{{ $post->title }}</td>
                 <td>{{ $post->slug }}</td>
                 <td>{{ $post->category ? $post->category->name : '' }}</td>
+                <td>
+                    @foreach($post->tags as $tag)
+                        <div class="text-white badge badge-pill badge-primary">{{ $tag->name }}</div>
+                    @endforeach
+                </td>
                 <td>{{ $post->published_at }}</td>
                 <td>{{ $post->created_at }}</td>
                 <td>

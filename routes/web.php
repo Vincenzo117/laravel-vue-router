@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('admin.home');
 });
 
-Auth::routes(); 
+Auth::routes();
 
 Route::middleware('auth')
     ->namespace('Admin')
@@ -29,3 +29,8 @@ Route::middleware('auth')
 
         Route::resource('/posts', 'PostController');
     });
+
+
+Route::get("{any?}", function() {
+    return view("guest.home");
+})->where("any", ".*");

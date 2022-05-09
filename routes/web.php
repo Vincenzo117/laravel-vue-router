@@ -31,6 +31,6 @@ Route::middleware('auth')
     });
 
 
-Route::get("{any?}", function() {
+Route::fallback(function() {
     return view("guest.home");
-})->where("any", ".*");
+});

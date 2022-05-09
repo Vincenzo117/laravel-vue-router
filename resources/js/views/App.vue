@@ -1,13 +1,15 @@
 <template>
-  <div class="text-xl text-center">App</div>
+  <MainHeader />
 </template>
 
 <script>
+import MainHeader from "../components/MainHeader.vue";
+
 export default {
-    name: 'App',
-}
+  name: "App",
+  components: {
+    MainHeader,
+  },
+};
 </script>
 
-<style>
-
-</style>

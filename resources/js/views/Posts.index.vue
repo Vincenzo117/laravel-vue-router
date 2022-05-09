@@ -1,6 +1,6 @@
 <template>
-  <main class="flex-grow">
-    <div class="container p-4">
+  <main class="flex-grow overflow-auto">
+    <div class="container px-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 py-8">
       <PostCard v-for="post in posts" :key="post.id" :post="post" />
     </div>
   </main>
@@ -25,6 +25,7 @@ export default {
         .get("/api/posts")
         .then((response) => {
           this.posts = response.data.posts;
+          console.log(this.posts);
         })
         .catch((error) => console.warn(error));
     },

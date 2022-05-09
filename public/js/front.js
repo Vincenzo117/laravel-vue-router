@@ -1943,8 +1943,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'PostCard',
+  name: "PostCard",
   props: {
     post: {
       type: Object,
@@ -2021,6 +2044,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get("/api/posts").then(function (response) {
         _this.posts = response.data.posts;
+        console.log(_this.posts);
       })["catch"](function (error) {
         return console.warn(error);
       });
@@ -2579,11 +2603,67 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "post-card" }, [
-    _vm._v("\n    " + _vm._s(_vm.post.title) + "\n"),
-  ])
+  return _c(
+    "div",
+    {
+      staticClass:
+        "\n    post-card\n    border-[1px] border-zinc-300\n    rounded-lg\n    overflow-hidden\n  ",
+    },
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "p-2" }, [
+        _c("h4", { staticClass: "truncate text-xl" }, [
+          _vm._v(_vm._s(_vm.post.title)),
+        ]),
+        _vm._v(" "),
+        _vm.post.category
+          ? _c(
+              "div",
+              {
+                staticClass:
+                  "mt-3 w-[max-content] text-white text-lg py-1 px-2 rounded-md bg-zinc-700",
+              },
+              [_vm._v(_vm._s(_vm.post.category.name))]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.post.tags
+          ? _c(
+              "ul",
+              { staticClass: "flex flex-wrap py-3 gap-2" },
+              _vm._l(_vm.post.tags, function (tag) {
+                return _c(
+                  "li",
+                  {
+                    key: tag.id,
+                    staticClass:
+                      "bg-zinc-100 rounded-md py-1 px-2 whitespace-nowrap",
+                  },
+                  [_vm._v("\n        " + _vm._s(tag.name) + "\n      ")]
+                )
+              }),
+              0
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _c("p", { staticClass: "truncate" }, [
+          _vm._v(_vm._s(_vm.post.content)),
+        ]),
+      ]),
+    ]
+  )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("figure", [
+      _c("img", { attrs: { src: "https://picsum.photos/400/200", alt: "" } }),
+    ])
+  },
+]
 render._withStripped = true
 
 
@@ -2634,10 +2714,13 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("main", { staticClass: "flex-grow" }, [
+  return _c("main", { staticClass: "flex-grow overflow-auto" }, [
     _c(
       "div",
-      { staticClass: "container p-4" },
+      {
+        staticClass:
+          "container px-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 py-8",
+      },
       _vm._l(_vm.posts, function (post) {
         return _c("PostCard", { key: post.id, attrs: { post: post } })
       }),

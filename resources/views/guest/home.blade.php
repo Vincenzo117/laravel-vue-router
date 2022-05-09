@@ -16,7 +16,7 @@
             container: {
                 center: true
             }
-          }
+          },
         }
       </script>
     <title>BoolPress</title>

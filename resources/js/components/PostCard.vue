@@ -23,7 +23,7 @@
         </li>
       </ul>
       <p class="truncate">{{ post.content }}</p>
-      <RouterLink :to="{ name: 'posts.show', params: { slug: post.slug }}">Go to the post</RouterLink>
+      <RouterLink class="mt-3 text-sky-500 cursor-pointer" :to="{ name: 'posts.show', params: { slug: post.slug }}">Go to the post</RouterLink>
     </div>
   </div>
 </template>

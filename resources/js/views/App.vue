@@ -2,13 +2,13 @@
   <div id="app" class="h-screen flex flex-col">
     <MainHeader />
 
-    <PostsIndex />
+    <RouterView />
   </div>
 </template>
 
 <script>
 import MainHeader from "../components/MainHeader.vue";
-import PostsIndex from "./Posts.index.vue";
+import PostsIndex from "../pages/Posts.index.vue";
 
 export default {
   name: "App",
